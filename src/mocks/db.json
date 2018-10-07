@@ -1,0 +1,79 @@
+{
+  "products": [
+    {
+      "name": "Galaxy S20",
+      "price": "1500",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "iPhone 7",
+      "price": "750"
+    },
+    {
+      "id": 3,
+      "name": "HTC",
+      "price": "400"
+    },
+    {
+      "name": "ok",
+      "price": "10",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "name": "Nokia",
+      "price": "200"
+    },
+    {
+      "id": 6,
+      "name": "Huawei",
+      "price": "350"
+    },
+    {
+      "id": 7,
+      "name": "Galaxy S5",
+      "price": "100"
+    },
+    {
+      "id": 8,
+      "name": "Xperia",
+      "price": "250"
+    },
+    {
+      "id": 9,
+      "name": "Wiko",
+      "price": "130"
+    },
+    {
+      "name": "a",
+      "price": "12",
+      "id": 10
+    },
+    {
+      "name": "Xiaomi A1",
+      "price": "100",
+      "id": 11
+    },
+    {
+      "name": "Xiaomi 3",
+      "price": "50",
+      "id": 12
+    },
+    {
+      "name": "superTel",
+      "price": "500",
+      "id": 13
+    },
+    {
+      "name": "toto",
+      "price": "1000",
+      "id": 14
+    },
+    {
+      "name": "autre",
+      "price": "10",
+      "id": 15
+    }
+  ]
+}

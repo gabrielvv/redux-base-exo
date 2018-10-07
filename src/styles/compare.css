@@ -1,0 +1,15 @@
+.CompareWrapper {
+  padding: 2rem 2rem 0;
+}
+  .CompareItem {
+    display: flex;
+    flex-wrap: no-wrap;
+    justify-content: space-between;
+  }
+    .CompareLine {
+      padding: 0 0 2rem;
+    }
+    .CompareLine strong {
+      display: inline-block;
+      width: 3rem;
+    }
