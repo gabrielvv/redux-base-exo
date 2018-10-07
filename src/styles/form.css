@@ -1,0 +1,38 @@
+.FormWrapper {
+  padding: 2rem;
+}
+.FormTitle {
+  margin: 0;
+  padding: 0 0 2rem;
+}
+  .FormLabel {
+    display: block;
+    padding: 0 0 0.5rem;
+  }
+  .TextInput {
+    background: white;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    margin: 0 0 2rem;
+    padding: 0.5rem 2rem;
+    width: 100%;
+  }
+  .Button {
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 1rem;
+    margin: 0 auto;
+    padding: 0.5rem 3rem;
+  }
+    .Button:hover {
+      background: #666;
+    }
+    .Button:disabled {
+      opacity: 0.1;
+    }
+
+  .ErrorMessage {
+    color: #d10019;
+  }

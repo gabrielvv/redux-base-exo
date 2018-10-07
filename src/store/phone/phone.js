@@ -1,0 +1,6 @@
+/**
+ * defaultPhoneState {
+ *  phones
+ *  selectedPhones
+ * }
+ */

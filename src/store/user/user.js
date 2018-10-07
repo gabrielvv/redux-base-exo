@@ -1,0 +1,4 @@
+/**
+ * defaultUserState
+ *   - name
+ */

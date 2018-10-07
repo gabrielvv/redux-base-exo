@@ -1,0 +1,22 @@
+.Header {
+  background: #333;
+  padding: 0.5rem 2rem;
+}
+  .HeaderLink {
+    color: #fff;
+    padding: 0 2rem 0 0;
+    text-decoration: none;
+  }
+    .HeaderLink:last-of-type {
+      padding: 0;
+    }
+  .HeaderActive {
+    color: #7aa9ee;
+  }
+  .HeaderTitle {
+    color: white;
+  }
+  .HeaderTitleName {
+    color:white;
+    padding: 0 0 1rem;
+  }
