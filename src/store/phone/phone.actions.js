@@ -12,7 +12,9 @@
 import PhoneApi from '../../services/phoneApi'
 
 export const PHONE_ACTIONS = {
-  ADD_PHONES: 'PHONE_ACTIONS/ADD_PHONES',
+  LOAD_PHONES_REQUEST: 'PHONE_ACTIONS/LOAD_PHONES_REQUEST',
+  LOAD_PHONES_SUCCESS: 'PHONE_ACTIONS/LOAD_PHONES_SUCCESS',
+  LOAD_PHONES_FAILURE: 'PHONE_ACTIONS/LOAD_PHONES_FAILURE',
   ADD_PHONE: 'PHONE_ACTIONS/ADD_PHONE',
   SELECT_PHONE: 'PHONE_ACTIONS/SELECT_PHONE',
   UPDATE_FILTER: 'UPDATE_FILTER'
@@ -27,15 +29,12 @@ export const getAllPhonesAction = () => {
   return (dispatch) => {
 
     dispatch({
-      type: PHONE_ACTIONS.ADD_PHONES,
-      asyncActionStatus: 'PROGRESS',
-      phones: []
+      type: PHONE_ACTIONS.LOAD_PHONES_REQUEST
     })
 
     return PhoneApi.getAllPhones().then(phones => {
       dispatch({
-        type: PHONE_ACTIONS.ADD_PHONES,
-        asyncActionStatus: 'SUCCESS',
+        type: PHONE_ACTIONS.LOAD_PHONES_SUCCESS,
         phones
       })
     })

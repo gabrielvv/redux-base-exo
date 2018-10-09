@@ -27,12 +27,17 @@ export default function phoneReducer(state = defaultPhoneState, action) {
       phones,
       filteredPhones: filterPhones(phones, state.filterValue)
     }
-  case PHONE_ACTIONS.ADD_PHONES:
+  case PHONE_ACTIONS.LOAD_PHONES_SUCCESS:
     return {
       ...state,
       phones: [ ...action.phones ],
       filteredPhones: filterPhones(action.phones, state.filterValue),
-      asyncActionStatus: action.asyncActionStatus
+      asyncActionStatus: 'SUCCESS'
+    }
+  case PHONE_ACTIONS.LOAD_PHONES_REQUEST:
+    return {
+      ...state,
+      asyncActionStatus: 'PROGRESS'
     }
   case PHONE_ACTIONS.SELECT_PHONE:
 
