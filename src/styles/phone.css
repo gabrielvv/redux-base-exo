@@ -5,11 +5,24 @@
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  padding: 2rem 0 0;
+  /* padding: 2rem 0 0; */
+}
+
+.PhoneFilter {
+  margin: 2rem;
+  display: flex;
+}
+
+.PhoneFilter input {
+  flex: 1;
 }
 
 .PhoneLink {
   text-decoration: none;
+}
+
+.NoResult {
+  margin: 0 0 2rem 2rem;
 }
 
 .Phone {

@@ -6,7 +6,10 @@
  */
 const defaultPhoneState = {
   phones: [],
-  selectedPhones: []
+  filteredPhones: [],
+  selectedPhones: [],
+  filterValue: '',
+  asyncActionStatus: ''
 }
 
 export default defaultPhoneState

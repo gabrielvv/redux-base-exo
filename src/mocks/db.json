@@ -76,24 +76,9 @@
       "id": 15
     },
     {
-      "name": "Foo",
-      "price": "168",
+      "name": "Goo",
+      "price": "12345",
       "id": 16
-    },
-    {
-      "name": "Foo",
-      "price": "168",
-      "id": 17
-    },
-    {
-      "name": "Foo",
-      "price": "168",
-      "id": 18
-    },
-    {
-      "name": "Foo",
-      "price": "168",
-      "id": 19
     }
   ]
 }

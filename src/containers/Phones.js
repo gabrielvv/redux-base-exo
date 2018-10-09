@@ -19,13 +19,14 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { getAllPhonesAction, selectPhoneAction } from '../store/phone/phone.actions'
-import { addNameAction } from '../store/user/user.actions'
+import { getAllPhonesAction, selectPhoneAction, updateFilter } from '../store/phone/phone.actions'
 import { messageAction } from '../store/message/message.actions'
 
 import Phone from '../components/Phone'
+import TextInput from '../components/TextInput'
+
 import '../styles/phone.css'
-import UserLogin from '../components/UserLogin'
+import '../styles/load-awesome/css/ball-beat.min.css'
 
 class Phones extends React.Component {
 
@@ -37,7 +38,10 @@ class Phones extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllPhonesAction()
+    if (this.props.isConnected) this.props.getAllPhonesAction()
+  }
+
+  componentDidUpdate() {
   }
 
   changeName(name){
@@ -47,22 +51,13 @@ class Phones extends React.Component {
   render() {
     const {
       phones = [],
-      isConnected,
       selectedPhones,
-      addNameAction,
       selectPhoneAction,
-      messageAction
+      messageAction,
+      filterValue,
+      updateFilter,
+      isConnected
     } = this.props
-
-    const { name } = this.state
-
-    if (!isConnected) {
-      return <UserLogin
-        changeName={(e) => this.changeName(e.target.value)}
-        submit={() => addNameAction(name)}
-        value={name}
-      />
-    }
 
     const phoneList = phones.map(phone => {
       const isSelected = !!selectedPhones.find(p => p.id === phone.id)
@@ -70,29 +65,39 @@ class Phones extends React.Component {
         ? () => messageAction('3 items maximum')
         : () => selectPhoneAction(phone)
 
-      return <Phone
-        {...phone}
-        selected={isSelected}
-        handleSelected={selectHandler}
-        key={phone.id}
-        className="PhoneLink"
-      />
+      return (
+        <Phone
+          {...phone}
+          selected={isSelected}
+          handleSelected={selectHandler}
+          key={phone.id}
+          className="PhoneLink"
+        />
+      )
     })
 
-    return <div className="PhoneList">{phoneList}</div>
+    return (
+      <React.Fragment>
+        <div className="PhoneFilter">
+          <TextInput name="filter" label="filter" value={filterValue} onChange={(e) => updateFilter(e.target.value)}/>
+        </div>
+        <div className="PhoneList">{!phones.length ? <div className="NoResult">0 résultats</div> : phoneList}</div>
+      </React.Fragment>
+    )
   }
 }
 
 const mapDispatchToProps = {
   getAllPhonesAction,
-  addNameAction,
   selectPhoneAction,
-  messageAction
+  messageAction,
+  updateFilter
 }
 
 const mapStateToProps = ({ phoneReducer, userReducer }) => {
   return ({
-    phones: phoneReducer.phones,
+    filterValue: phoneReducer.filterValue,
+    phones: phoneReducer.filteredPhones,
     selectedPhones: phoneReducer.selectedPhones,
     isConnected: !!userReducer.name
   })

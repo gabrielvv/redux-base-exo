@@ -16,6 +16,7 @@ import { addPhoneAction } from '../store/phone/phone.actions'
 import '../styles/form.css'
 
 const defaultState = {
+  shouldRedirect: false,
   phone: { name: '', price: '', id: '' },
   errors: {}
 }
@@ -70,18 +71,12 @@ class ManagePhonePage extends React.Component {
       return
     }
 
-    this.savePhone(phone)
-  }
-
-  savePhone(phone) {
-    PhoneApi.savePhone(phone).then(() => {
-      this.setState({ shouldRedirect: true })
-    })
+    this.props.addPhoneAction(phone)
+    this.setState({ shouldRedirect: true })
   }
 
   render() {
-    const { phone, errors } = this.state
-    const { shouldRedirect } = this.props
+    const { phone, errors, shouldRedirect } = this.state
 
     const nameField = {
       name: 'name',

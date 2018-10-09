@@ -43,11 +43,12 @@ const Links = routes.map(route => (
 ))
 
 const Header = (props) => {
+  const { name } = props
 
-  if (props.name)
+  if (name)
     return (
       <header className="Header">
-        <div className="HeaderTitleName">Bonjour {props.name}</div>
+        <div className="HeaderTitleName">Bonjour {name}</div>
         <div>{Links}</div>
       </header>
     )
@@ -59,8 +60,8 @@ const Header = (props) => {
   )
 }
 
-const mapStateToProps = state => ({
-  name: state.userReducer.name
+const mapStateToProps = ({ userReducer: { name } }) => ({
+  name
 })
 
 Header.propTypes = {
