@@ -18,39 +18,84 @@
  */
 
 import React from 'react'
+import { connect } from 'react-redux'
+import { getAllPhonesAction, selectPhoneAction } from '../store/phone/phone.actions'
+import { addNameAction } from '../store/user/user.actions'
+import { messageAction } from '../store/message/message.actions'
 
-import PhoneApi from '../services/phoneApi'
 import Phone from '../components/Phone'
 import '../styles/phone.css'
+import UserLogin from '../components/UserLogin'
 
 class Phones extends React.Component {
 
-  constructor(props) {
+  constructor(props){
     super(props)
     this.state = {
-      phones: []
+      name: ''
     }
   }
 
   componentDidMount() {
-    PhoneApi.getAllPhones().then(phones => {
-      this.setState({ phones })
-    })
+    this.props.getAllPhonesAction()
+  }
+
+  changeName(name){
+    this.setState({ name })
   }
 
   render() {
-    const { phones = [] } = this.state
+    const {
+      phones = [],
+      isConnected,
+      selectedPhones,
+      addNameAction,
+      selectPhoneAction,
+      messageAction
+    } = this.props
 
-    const phoneList = phones.map(phone => (
-      <Phone
+    const { name } = this.state
+
+    if (!isConnected) {
+      return <UserLogin
+        changeName={(e) => this.changeName(e.target.value)}
+        submit={() => addNameAction(name)}
+        value={name}
+      />
+    }
+
+    const phoneList = phones.map(phone => {
+      const isSelected = !!selectedPhones.find(p => p.id === phone.id)
+      const selectHandler = selectedPhones.length === 3 && !isSelected
+        ? () => messageAction('3 items maximum')
+        : () => selectPhoneAction(phone)
+
+      return <Phone
         {...phone}
+        selected={isSelected}
+        handleSelected={selectHandler}
         key={phone.id}
         className="PhoneLink"
       />
-    ))
+    })
 
     return <div className="PhoneList">{phoneList}</div>
   }
 }
 
-export default Phones
+const mapDispatchToProps = {
+  getAllPhonesAction,
+  addNameAction,
+  selectPhoneAction,
+  messageAction
+}
+
+const mapStateToProps = ({ phoneReducer, userReducer }) => {
+  return ({
+    phones: phoneReducer.phones,
+    selectedPhones: phoneReducer.selectedPhones,
+    isConnected: !!userReducer.name
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Phones)

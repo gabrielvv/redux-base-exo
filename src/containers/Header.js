@@ -15,7 +15,9 @@
  */
 
 import React from 'react'
+import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import '../styles/header.css'
 
@@ -27,6 +29,10 @@ const routes = [
   {
     url: '/managePhone',
     label: 'Ajout Phone'
+  },
+  {
+    url: '/compare',
+    label: 'Comparer'
   }
 ]
 
@@ -36,11 +42,29 @@ const Links = routes.map(route => (
   >{route.label}</NavLink>
 ))
 
-const Header = () => (
-  <header className="Header">
-    <div className="HeaderTitleName">Bonjour "nom"</div>
-    <div>{Links}</div>
-  </header>
-)
+const Header = (props) => {
 
-export default Header
+  if (props.name)
+    return (
+      <header className="Header">
+        <div className="HeaderTitleName">Bonjour {props.name}</div>
+        <div>{Links}</div>
+      </header>
+    )
+
+  return (
+    <header className="Header">
+      <div className="HeaderTitleName">Connexion</div>
+    </header>
+  )
+}
+
+const mapStateToProps = state => ({
+  name: state.userReducer.name
+})
+
+Header.propTypes = {
+  name: PropTypes.string.isRequired
+}
+
+export default connect(mapStateToProps)(Header)

@@ -6,16 +6,17 @@
 
 import React from 'react'
 import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
 
 import PhoneApi from '../services/phoneApi'
 import isPhoneError from '../services/isPhoneError'
 import TextInput from '../components/TextInput'
+import { addPhoneAction } from '../store/phone/phone.actions'
 
 import '../styles/form.css'
 
 const defaultState = {
   phone: { name: '', price: '', id: '' },
-  shouldRedirect: false,
   errors: {}
 }
 
@@ -79,7 +80,8 @@ class ManagePhonePage extends React.Component {
   }
 
   render() {
-    const { shouldRedirect, phone, errors } = this.state
+    const { phone, errors } = this.state
+    const { shouldRedirect } = this.props
 
     const nameField = {
       name: 'name',
@@ -127,4 +129,12 @@ class ManagePhonePage extends React.Component {
   }
 }
 
-export default ManagePhonePage
+const mapStateToProps = ({ userReducer: { name } }) => ({
+  shouldRedirect: !name
+})
+
+const mapDispatchToProps = {
+  addPhoneAction
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManagePhonePage)

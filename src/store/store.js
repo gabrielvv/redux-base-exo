@@ -1,3 +1,0 @@
-/**
- * Configure redux store
- */

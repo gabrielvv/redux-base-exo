@@ -15,14 +15,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import '../styles/phone.css'
 
-const Phone = ({ name, price }) => (
-  <article className="Phone">
+const Phone = ({ name, price, selected, handleSelected }) => (
+  <article className={'Phone' + (selected ? ' selected': '')} onClick={handleSelected}>
     <div>{name}</div>
     <div>{price}&euro;</div>
   </article>
 )
 
 Phone.propTypes = {
+  selected: PropTypes.bool,
+  handleSelected: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]).isRequired
 }
